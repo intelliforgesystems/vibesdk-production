@@ -50,8 +50,7 @@ const SHARED_IMPLEMENTATION_CONFIG = {
 //======================================================================================
 // ATTENTION! Platform config requires specific API keys and Cloudflare AI Gateway setup.
 //======================================================================================
-/* 
-These are the configs used at build.cloudflare.dev 
+/* These are the configs used at build.cloudflare.dev 
 You may need to provide API keys for these models in your environment or use 
 Cloudflare AI Gateway unified billing for seamless model access without managing multiple keys.
 */
@@ -117,67 +116,67 @@ const PLATFORM_AGENT_CONFIG: AgentConfig = {
 };
 
 //======================================================================================
-// Default Gemini-only config (most likely used in your deployment)
+// UPDATED FOR CLOUDFLARE WORKERS AI: Llama 3.1 70B & 8B configuration
 //======================================================================================
-/* These are the default out-of-the box gemini-only models used when PLATFORM_MODEL_PROVIDERS is not set */
+/* These models run entirely on Cloudflare's network using the 'AI' binding */
 const DEFAULT_AGENT_CONFIG: AgentConfig = {
     ...COMMON_AGENT_CONFIGS,
     templateSelection: {
-        name: AIModels.GEMINI_2_5_FLASH_LITE,
+        name: "@cf/meta/llama-3.1-8b-instruct" as AIModels,
         max_tokens: 2000,
-        fallbackModel: AIModels.GEMINI_2_5_FLASH,
+        fallbackModel: "@cf/meta/llama-3.1-70b-instruct" as AIModels,
         temperature: 0.6,
     },
     blueprint: {
-        name: AIModels.GEMINI_3_FLASH_PREVIEW,
+        name: "@cf/meta/llama-3.1-70b-instruct" as AIModels,
         reasoning_effort: 'high',
         max_tokens: 64000,
-        fallbackModel: AIModels.GEMINI_2_5_PRO,
+        fallbackModel: "@cf/meta/llama-3.1-70b-instruct" as AIModels,
         temperature: 1,
     },
     projectSetup: {
-        name: AIModels.GEMINI_3_FLASH_PREVIEW,
+        name: "@cf/meta/llama-3.1-70b-instruct" as AIModels,
         ...SHARED_IMPLEMENTATION_CONFIG,
     },
     phaseGeneration: {
-        name: AIModels.GEMINI_3_FLASH_PREVIEW,
+        name: "@cf/meta/llama-3.1-70b-instruct" as AIModels,
         ...SHARED_IMPLEMENTATION_CONFIG,
     },
     firstPhaseImplementation: {
-        name: AIModels.GEMINI_3_FLASH_PREVIEW,
+        name: "@cf/meta/llama-3.1-70b-instruct" as AIModels,
         ...SHARED_IMPLEMENTATION_CONFIG,
     },
     phaseImplementation: {
-        name: AIModels.GEMINI_3_FLASH_PREVIEW,
+        name: "@cf/meta/llama-3.1-70b-instruct" as AIModels,
         ...SHARED_IMPLEMENTATION_CONFIG,
     },
     conversationalResponse: {
-        name: AIModels.GEMINI_2_5_FLASH,
+        name: "@cf/meta/llama-3.1-8b-instruct" as AIModels,
         reasoning_effort: 'low',
         max_tokens: 4000,
         temperature: 0,
-        fallbackModel: AIModels.GEMINI_2_5_PRO,
+        fallbackModel: "@cf/meta/llama-3.1-70b-instruct" as AIModels,
     },
     deepDebugger: {
-        name: AIModels.GEMINI_3_FLASH_PREVIEW,
+        name: "@cf/meta/llama-3.1-70b-instruct" as AIModels,
         reasoning_effort: 'high',
         max_tokens: 8000,
         temperature: 1,
-        fallbackModel: AIModels.GEMINI_2_5_FLASH,
+        fallbackModel: "@cf/meta/llama-3.1-70b-instruct" as AIModels,
     },
     fileRegeneration: {
-        name: AIModels.GEMINI_3_FLASH_PREVIEW,
+        name: "@cf/meta/llama-3.1-70b-instruct" as AIModels,
         reasoning_effort: 'low',
         max_tokens: 32000,
         temperature: 1,
-        fallbackModel: AIModels.GEMINI_2_5_FLASH,
+        fallbackModel: "@cf/meta/llama-3.1-70b-instruct" as AIModels,
     },
     agenticProjectBuilder: {
-        name: AIModels.GEMINI_3_FLASH_PREVIEW,
+        name: "@cf/meta/llama-3.1-70b-instruct" as AIModels,
         reasoning_effort: 'high',
         max_tokens: 8000,
         temperature: 1,
-        fallbackModel: AIModels.GEMINI_2_5_FLASH,
+        fallbackModel: "@cf/meta/llama-3.1-70b-instruct" as AIModels,
     },
 };
 
